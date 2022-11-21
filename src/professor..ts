@@ -1,8 +1,13 @@
-export class Professor {
-  private _nome!: String
-  private _cpf!: Number
-  private _endereco!: String
-  private _estadoCivil!: String
-  private _salario!: Number
-  private _titulacao!: String
+import { Pessoa } from './pessoa'
+import { Academia } from './academia'
+
+export class Professor extends Pessoa {
+  constructor(
+    nome: string,
+    idade: number,
+    cpf: string,
+    genero: string
+   ) {
+  super(nome, idade, cpf, genero)
+  }
 }

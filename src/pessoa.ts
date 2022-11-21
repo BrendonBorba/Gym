@@ -1,10 +1,13 @@
 export class Pessoa {
-  protected _nome: string = "";
-  protected _cpf: string = "";
-  protected _endereco: string = "";
-  protected _estadoCivil = "";
+  public nome: string;
+  private idade: number;
+  private cpf: string;
+  private genero: string;
 
-  constructor(nome: string, cpf: string) {
+  constructor(nome: string, idade: number, cpf: string, genero: string) {
     this.nome = nome
     this.cpf = cpf
+    this.genero = genero
+    this.idade = idade
+  }
 }
