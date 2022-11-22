@@ -1,44 +1,72 @@
+import { Professor } from "./professor.";
+import { Aluno } from "./aluno";
+
 export class Academia {
   private static academia: Academia;
+  private readonly professores: Professor[] = []
+  private readonly alunos: Aluno[] = []
 
   private constructor(
     private _nome: string,
-    private _professores: string[]= [],
-    private _alunos: string[]= [],
     private _cnpj: string
   ) {}
 
-  static getAcademia(nome: string, professores: [], alunos: [], cnpj: string) {
+  static getAcademia(nome: string, cnpj: string) {
     if (Academia.academia) return Academia.academia
-    Academia.academia = new Academia(nome, professores, alunos, cnpj)
+    Academia.academia = new Academia(nome, cnpj)
     return Academia.academia;
   }
 
-  get quantidadeProfessores() {
-    return this._professores.length
+  inserirProfessor(...professores: Professor[]): void {
+    for (const professor of professores) {
+      this.professores.push(professor)
+    }
   }
 
-  get quantidadeAlunos() {
-    return  this._alunos.length
+  listarProfessores(): number {
+    return this.professores.length
   }
 
-  get professores() {
-    return this._professores
+  inserirAluno(...alunos: Aluno[]): void {
+    for (const aluno of alunos) {
+      this.alunos.push(aluno)
+    }
   }
+
+  listarAlunos(): number {
+    return this.alunos.length
+  }
+
+
+  // get quantidadeProfessores() {
+  //   return this._professores.length
+  // }
+
+  // get quantidadeAlunos() {
+  //   return  this._alunos.length
+  // }
+
+  // get professores() {
+  //   return this._professores
+  // }
 
   dadosAcademia() {
-    console.log(`Dados da academia:
+    const dados = `Dados da academia:
     nome: ${this._nome};
-    número de professores: ${academia.quantidadeProfessores};
-    número de alunos: ${academia.quantidadeAlunos};
+    número de professores: ${academia.listarProfessores()};
+    número de alunos: ${academia.listarAlunos()};
     CNPJ: ${this._cnpj};
-    `);
+    `;
   }
 }
 
-const academia = Academia.getAcademia('Gold Gym', [], [], '12.123.123/0001-12')
+const academia = Academia.getAcademia('Gold Gym', '12.123.123/0001-12')
 academia.dadosAcademia()
+const professor = new Professor('Angelo', 40, '123.123.123-12', 'masculino')
 
+academia.inserirProfessor(professor)
+
+console.log(academia.dadosAcademia());
 
 
 // export class Aluno {

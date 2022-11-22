@@ -1,9 +1,17 @@
-import {Pessoa} from './pessoa'
+import { Pessoa } from './pessoa'
 
 export class Aluno extends Pessoa {
-  protected _turma!: String;
-}
+  constructor(
+    nome: string,
+    idade: number,
+    cpf: string,
+    genero: string,
+    protected _forca: number,
+    protected _cansaco: number,
+    protected _peso: number,
+    protected _intervalo: number
 
-falar(): string {
-  return 'Cheguei'
+  ) {
+  super(nome, idade, cpf, genero)
+  }
 }
